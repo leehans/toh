@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 using System.Collections;
  
  namespace TOH.Core
@@ -9,6 +10,9 @@ using System.Collections;
     {
         [SerializeField]
         private SpringJoint2D spring;
+
+        public UnityEvent onInputDown;
+        public UnityEvent onInputUp;
     
         void Awake()
         {
@@ -20,6 +24,8 @@ using System.Collections;
         {
             spring.enabled = true;
             SetConnectedAnchor(Camera.main.ScreenToWorldPoint (Input.mousePosition));
+            if (onInputDown != null)
+                onInputDown.Invoke();
         }
     
         void OnMouseDrag()        
@@ -33,6 +39,8 @@ using System.Collections;
         void OnMouseUp()        
         {
             spring.enabled = false;
+            if (onInputUp != null)
+                onInputUp.Invoke();
         }
 
         #region Helpers

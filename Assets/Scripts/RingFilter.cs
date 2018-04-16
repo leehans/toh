@@ -24,6 +24,9 @@ public class RingFilter : MonoBehaviour
 	[SerializeField]
 	private Transform raycastOrigin;
 
+	[SerializeField]
+	private AudioClip sfxClip;
+
 	// Cache the push direction for efficient use in succeeding collisions
 	private Vector2 pushDirection;
 
@@ -35,11 +38,8 @@ public class RingFilter : MonoBehaviour
 	// Countdown timer to push interval
 	private float pushTrigger = 0.0f;
 
-	private Transform cachedTransform;
-
 	void Awake()
 	{
-		cachedTransform = transform;
 		pushDirection = new Vector2(xDirection, 1);
 	}
 	
@@ -47,13 +47,10 @@ public class RingFilter : MonoBehaviour
 	{
 		if (!Allow(other))
 		{
-			other.attachedRigidbody.AddForce(pushDirection * pushForce, ForceMode2D.Impulse);
 			pushTrigger = 0;
-
-			// Display message about ring sizes and order
-			Parameters p = new Parameters();
-			p.PutExtra("message", "Whoops! You can only drop a ring onto a larger one!");
-			EventBroadcaster.PostEvent(EventNames.DisplayMessage, p);
+			other.attachedRigidbody.AddForce(pushDirection * pushForce, ForceMode2D.Impulse);
+			DisplayRingDropRule();
+			TriggerSFX();
 		}
 	}	
 
@@ -66,15 +63,27 @@ public class RingFilter : MonoBehaviour
 			if (!Allow(other))
 			{
 				other.attachedRigidbody.AddForce(pushDirection * pushForce, ForceMode2D.Impulse);
-				// Display message about ring sizes and order
-				Parameters p = new Parameters();
-				p.PutExtra("message", "Whoops! You can only drop a ring onto a larger one!");
-				EventBroadcaster.PostEvent(EventNames.DisplayMessage, p);
+				DisplayRingDropRule();
+				TriggerSFX();
 			}
 		}
 	}
 
 	#region Helpers
+	private void DisplayRingDropRule()
+	{
+		// Display message about ring sizes and order
+		Parameters p = new Parameters();
+		p.PutExtra("message", "Whoops! You can only drop a ring onto a larger one!");
+		EventBroadcaster.PostEvent(EventNames.DisplayMessage, p);
+	}
+
+	private void TriggerSFX()
+	{
+		// Play the sfx for not allowing larger rings to drop
+		GameSystems.GetService<AudioHandler>().PlayOneShot(sfxClip);
+	}
+
 	private bool Allow(Collider2D incomingCollider)
 	{
 		//Debug.Log("<color=yellow>RingFilter | Check if " + incomingCollider.gameObject.name + " is allowed on a pin</color>");
