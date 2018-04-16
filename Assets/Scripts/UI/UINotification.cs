@@ -18,12 +18,13 @@ public class UINotification : MonoBehaviour
 
 	void Start()
 	{
-		//EventBroadcaster.AddObserver()
+		EventBroadcaster.AddObserver(EventNames.DisplayMessage, HandleOnDisplayNotificationEvent);
 	}
 
 	void OnDestroy()
 	{
 		StopAllCoroutines();
+		EventBroadcaster.RemoveActionAtObserver(EventNames.DisplayMessage, HandleOnDisplayNotificationEvent);
 	}
 
 	public void Display(string message)
@@ -41,6 +42,7 @@ public class UINotification : MonoBehaviour
 		}
 		
 		text.text = message;
+		text.gameObject.SetActive(true);
 		StartCoroutine("DelayHide", 3.0f);
 	}
 

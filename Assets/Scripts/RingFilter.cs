@@ -49,6 +49,11 @@ public class RingFilter : MonoBehaviour
 		{
 			other.attachedRigidbody.AddForce(pushDirection * pushForce, ForceMode2D.Impulse);
 			pushTrigger = 0;
+
+			// Display message about ring sizes and order
+			Parameters p = new Parameters();
+			p.PutExtra("message", "Whoops! You can only drop a ring onto a larger one!");
+			EventBroadcaster.PostEvent(EventNames.DisplayMessage, p);
 		}
 	}	
 
@@ -61,6 +66,10 @@ public class RingFilter : MonoBehaviour
 			if (!Allow(other))
 			{
 				other.attachedRigidbody.AddForce(pushDirection * pushForce, ForceMode2D.Impulse);
+				// Display message about ring sizes and order
+				Parameters p = new Parameters();
+				p.PutExtra("message", "Whoops! You can only drop a ring onto a larger one!");
+				EventBroadcaster.PostEvent(EventNames.DisplayMessage, p);
 			}
 		}
 	}
