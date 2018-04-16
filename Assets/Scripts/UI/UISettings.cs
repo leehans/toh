@@ -24,11 +24,11 @@ public class UISettings : MonoBehaviour
 		bool isOn = p.GetBoolExtra("on", true);
 		if (isOn)
 		{
-			GameSystems.GetService<AudioHandler>().UnmuteBGM();
+			GameSystems.GetService<IAudioHandler>().UnmuteBGM();
 		}
 		else
 		{
-			GameSystems.GetService<AudioHandler>().MuteBGM();
+			GameSystems.GetService<IAudioHandler>().MuteBGM();
 		}
 	}
 
@@ -37,11 +37,11 @@ public class UISettings : MonoBehaviour
 		bool isOn = p.GetBoolExtra("on", true);
 		if (isOn)
 		{
-			GameSystems.GetService<AudioHandler>().UnmuteSFX();
+			GameSystems.GetService<IAudioHandler>().UnmuteSFX();
 		}
 		else
 		{
-			GameSystems.GetService<AudioHandler>().MuteSFX();
+			GameSystems.GetService<IAudioHandler>().MuteSFX();
 		}
 	}
 	#endregion // Event handlers

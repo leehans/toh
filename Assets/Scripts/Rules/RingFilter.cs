@@ -81,7 +81,7 @@ public class RingFilter : MonoBehaviour
 	private void TriggerSFX()
 	{
 		// Play the sfx for not allowing larger rings to drop
-		GameSystems.GetService<AudioHandler>().PlayOneShot(sfxClip);
+		GameSystems.GetService<IAudioHandler>().PlayOneShot(sfxClip);
 	}
 
 	private bool Allow(Collider2D incomingCollider)
@@ -99,8 +99,8 @@ public class RingFilter : MonoBehaviour
         if (hit.collider != null) 
 		{
 			//Debug.Log("<color=yellow>RingFilter | Hit a collider " + hit.collider.gameObject.name + "</color>");
-            Ring incomingRing = GameSystems.GetService<RingRegistry>().GetRing(incomingCollider.gameObject.GetInstanceID());
-			Ring hitRing = GameSystems.GetService<RingRegistry>().GetRing(hit.collider.gameObject.GetInstanceID());
+            Ring incomingRing = GameSystems.GetService<RingRegistry>().Get(incomingCollider.gameObject.GetInstanceID());
+			Ring hitRing = GameSystems.GetService<RingRegistry>().Get(hit.collider.gameObject.GetInstanceID());
 
 			if (incomingRing == null || hitRing == null) return false;
 			if (incomingRing.Size == hitRing.Size) return true;

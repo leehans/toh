@@ -40,7 +40,7 @@ namespace TOH.Game
 		#region Helpers
 		private void PlaySFX(AudioClip clip)
 		{
-			GameSystems.GetService<AudioHandler>().PlayOneShot(clip);
+			GameSystems.GetService<IAudioHandler>().PlayOneShot(clip);
 		}
 		#endregion // Helpers
 	}

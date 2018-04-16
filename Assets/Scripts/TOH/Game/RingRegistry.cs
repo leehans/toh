@@ -26,7 +26,7 @@ namespace TOH.Game
 			}
 		}
 
-		public Ring GetRing(int id)
+		public Ring Get(int id)
 		{
 			if (registry.ContainsKey(id))
 			{

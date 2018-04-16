@@ -6,7 +6,7 @@ namespace TOH.Core
 {
 	// Simple handler for game music and sfx
 	// by: Lee
-	public class AudioHandler : MonoBehaviour 
+	public class AudioHandler : MonoBehaviour, IAudioHandler 
 	{
 		[SerializeField]
 		private AudioSource sfxSource;
@@ -18,7 +18,7 @@ namespace TOH.Core
 
 		void Awake()
 		{
-			GameSystems.Register(typeof(AudioHandler), this);
+			GameSystems.Register(typeof(IAudioHandler), this);
 			sfxDefaultVolume = sfxSource.volume;
 		}
 
@@ -41,7 +41,7 @@ namespace TOH.Core
 		}
 		#endregion // Event handlers
 
-		#region Audio handler functions
+		#region IAudioHandler implementation
 		public void PlayOneShot(AudioClip clip)
 		{
 			if (sfxSource.volume > 0)
@@ -67,6 +67,6 @@ namespace TOH.Core
 		{
 			sfxSource.volume = sfxDefaultVolume;
 		}
-		#endregion // Audio handler functions
+		#endregion // IAudioHandler implementation
 	}
 }
