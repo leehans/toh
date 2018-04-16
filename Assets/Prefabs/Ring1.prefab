@@ -129,7 +129,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1731921708541494}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -4.2, y: 4.07, z: 0}
+  m_LocalPosition: {x: -4.2, y: 1.48, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4066993592991554}
@@ -318,6 +318,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   size: 1
+  sfxOnInputUp: {fileID: 8300000, guid: 19824a2f9a350c0428181c25112a4c28, type: 3}
+  sfxOnInputDown: {fileID: 8300000, guid: 0d262e6224a03b44192cc13912e1ce09, type: 3}
 --- !u!114 &114438515220994958
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -330,6 +332,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spring: {fileID: 231735741868540370}
+  onInputDown:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 114298328630997046}
+        m_MethodName: HandleOnInputDown
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  onInputUp:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 114298328630997046}
+        m_MethodName: HandleOnInputUp
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
 --- !u!114 &114978645353982206
 MonoBehaviour:
   m_ObjectHideFlags: 1
