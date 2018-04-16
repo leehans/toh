@@ -17,20 +17,27 @@ using System.Collections;
  
      void OnMouseDown()
      {
-     	spring.enabled = true;//I'm reactivating the SpringJoint2D component each time I'm clicking on my object becouse I'm disabling it after I'm releasing the mouse click so it will fly in the direction i was moving my mouse
+     	spring.enabled = true;
+        SetConnectedAnchor(Camera.main.ScreenToWorldPoint (Input.mousePosition));
      }
  
      void OnMouseDrag()        
      {
 		if (spring.enabled) 
 		{
-			Vector2 cursorPosition = Camera.main.ScreenToWorldPoint (Input.mousePosition);//getting cursor position
-			spring.connectedAnchor = cursorPosition;//the anchor get's cursor's position
+			SetConnectedAnchor(Camera.main.ScreenToWorldPoint (Input.mousePosition));
 		}
      }
      
      void OnMouseUp()        
      {
-     	spring.enabled = false;//disabling the spring component
+     	spring.enabled = false;
      }
+
+     #region Helpers
+     private void SetConnectedAnchor(Vector2 pos)
+     {
+         spring.connectedAnchor = pos;
+     }
+     #endregion // Helpers
  }

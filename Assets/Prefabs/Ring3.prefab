@@ -26,6 +26,7 @@ GameObject:
   - component: {fileID: 231232915517533478}
   - component: {fileID: 114332576033252030}
   - component: {fileID: 61326006457168818}
+  - component: {fileID: 114025038668925584}
   m_Layer: 11
   m_Name: Ring3
   m_TagString: Untagged
@@ -154,7 +155,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 1
+  m_CollisionDetection: 0
   m_Constraints: 0
 --- !u!61 &61324210686671582
 BoxCollider2D:
@@ -304,6 +305,23 @@ CompositeCollider2D:
       - {x: -1.69, y: -0.48000002}
       - {x: -0.77, y: -0.48000002}
   m_VertexDistance: 0.0005
+--- !u!114 &114025038668925584
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1457008791660780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bcf478f4d28d2e744aa85296bf80d75b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inverseClamp:
+    min: 30
+    max: 330
+  speed: 25
+  cachedTransform: {fileID: 4858505407539560}
+  rBody2D: {fileID: 50947971606670582}
 --- !u!114 &114332576033252030
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -421,5 +439,5 @@ SpringJoint2D:
   m_ConnectedAnchor: {x: 0, y: 0}
   m_AutoConfigureDistance: 0
   m_Distance: 0.005
-  m_DampingRatio: 0
+  m_DampingRatio: 1
   m_Frequency: 1
