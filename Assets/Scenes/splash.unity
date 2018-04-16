@@ -142,7 +142,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nextSceneToLoad: title
-  delayBeforeLoad: 3
+  delayBeforeLoad: 0.5
 --- !u!20 &1660807348
 Camera:
   m_ObjectHideFlags: 0
