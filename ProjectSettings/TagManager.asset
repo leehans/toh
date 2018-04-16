@@ -13,13 +13,13 @@ TagManager:
   - UI
   - 
   - 
-  - pins
-  - plate
+  - Pins
+  - Plate
   - 
-  - ring
-  - boundary
-  - ring_to_ring
-  - 
+  - Ring
+  - Boundary
+  - RingToRingCollider
+  - RingFilter
   - 
   - 
   - 
