@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TOH.Core;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,6 +9,18 @@ public class Notification : MonoBehaviour
 	[SerializeField]
 	private Text text;
 
+	private Queue<string> queuedMessages;
+
+	void Awake()
+	{
+		queuedMessages = new Queue<string>();
+	}
+
+	void Start()
+	{
+		//EventBroadcaster.AddObserver()
+	}
+
 	void OnDestroy()
 	{
 		StopAllCoroutines();
@@ -15,12 +28,34 @@ public class Notification : MonoBehaviour
 
 	public void Display(string message)
 	{
-		if (text.text.Equals(message) && text.gameObject.activeInHierarchy) return;
+		if (text.gameObject.activeInHierarchy)
+		{
+			if (queuedMessages != null && queuedMessages.Count <= 0 && text.text.Equals(message))
+			{
+				return;
+			}
+			else
+			{
+				queuedMessages.Enqueue(message);
+			}
+		}
+		
 		text.text = message;
 		StartCoroutine("DelayHide", 3.0f);
 	}
 
-	#region  Coroutines
+	#region Event handlers
+	private void HandleOnDisplayNotificationEvent(Parameters p)
+	{
+		string message = p.GetStringExtra("message", string.Empty);
+		if (!string.IsNullOrEmpty(message))
+		{
+			Display(message);
+		}
+	}
+	#endregion //Event handlers
+
+	#region Coroutines
 	private IEnumerator DelayHide(float delay)
 	{
 		yield return new WaitForSeconds(delay);
@@ -28,4 +63,17 @@ public class Notification : MonoBehaviour
 		text.text = string.Empty;
 	}
 	#endregion // Coroutines
+
+
+	#region Helpers
+	private void CheckForQueuedMessages()
+	{
+		if (queuedMessages != null && queuedMessages.Count > 0)
+		{
+			string message = queuedMessages.Dequeue();
+			text.text = message;
+			StartCoroutine("DelayHide", 3.0f);
+		}
+	}
+	#endregion // Helpers
 }
