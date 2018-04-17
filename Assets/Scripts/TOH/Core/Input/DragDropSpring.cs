@@ -7,6 +7,7 @@ namespace TOH.Core
  {
     // Simple drag drop controls used in conjunction with a SpringJoint2D component
     // Based on: https://answers.unity.com/questions/618546/how-to-drag-and-throw-2d-objects.html
+    // By: Lee
     [RequireComponent(typeof(SpringJoint2D))]
     [RequireComponent(typeof(MouseTouch))]
     public class DragDropSpring : MonoBehaviour 
