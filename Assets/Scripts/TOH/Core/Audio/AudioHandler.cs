@@ -25,11 +25,15 @@ namespace TOH.Core
 		void Start()
 		{
 			EventBroadcaster.AddObserver(EventNames.PlayOneShot, HandleOnPlayOneShotRequest);
+			EventBroadcaster.AddObserver(EventNames.ToggleBGM, HandleOnToggleBGM);
+			EventBroadcaster.AddObserver(EventNames.ToggleSFX, HandleOnToggleSFX);
 		}
 
 		void OnDestroy()
 		{
 			EventBroadcaster.RemoveActionAtObserver(EventNames.PlayOneShot, HandleOnPlayOneShotRequest);
+			EventBroadcaster.RemoveActionAtObserver(EventNames.ToggleBGM, HandleOnToggleBGM);
+			EventBroadcaster.RemoveActionAtObserver(EventNames.ToggleSFX, HandleOnToggleSFX);
 		}
 
 		#region Event handlers
@@ -38,6 +42,32 @@ namespace TOH.Core
 			AudioClip clip = parameters.GetObjectExtra("clip") as AudioClip;
 			if (clip != null)
 				PlayOneShot(clip);
+		}
+
+		private void HandleOnToggleBGM(Parameters p)
+		{
+			bool isOn = p.GetBoolExtra("on", true);
+			if (isOn)
+			{
+				GameSystems.GetService<IAudioHandler>().UnmuteBGM();
+			}
+			else
+			{
+				GameSystems.GetService<IAudioHandler>().MuteBGM();
+			}
+		}
+
+		private void HandleOnToggleSFX(Parameters p)
+		{
+			bool isOn = p.GetBoolExtra("on", true);
+			if (isOn)
+			{
+				GameSystems.GetService<IAudioHandler>().UnmuteSFX();
+			}
+			else
+			{
+				GameSystems.GetService<IAudioHandler>().MuteSFX();
+			}
 		}
 		#endregion // Event handlers
 
