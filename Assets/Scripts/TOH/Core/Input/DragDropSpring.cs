@@ -1,15 +1,21 @@
 ﻿using UnityEngine;
 using UnityEngine.Events;
 using System.Collections;
- 
- namespace TOH.Core
+using UnityEngine.EventSystems;
+
+namespace TOH.Core
  {
     // Simple drag drop controls used in conjunction with a SpringJoint2D component
     // Based on: https://answers.unity.com/questions/618546/how-to-drag-and-throw-2d-objects.html
+    [RequireComponent(typeof(SpringJoint2D))]
+    [RequireComponent(typeof(MouseTouch))]
     public class DragDropSpring : MonoBehaviour 
     {
         [SerializeField]
         private SpringJoint2D spring;
+
+        [SerializeField]
+        private MouseTouch mTouch;
 
         public UnityEvent onInputDown;
         public UnityEvent onInputUp;
@@ -19,24 +25,31 @@ using System.Collections;
             spring.connectedAnchor = transform.position;
             spring.enabled = false;
         }
+
+        void Start()
+        {
+            mTouch.onPointerDownEvent += HandleOnInputDownEvent;
+            mTouch.onDragEvent += HandleOnInputDragEvent;
+            mTouch.onPointerUpEvent += HandleOnInputUpEvent;
+        }
     
-        void OnMouseDown()
+        void HandleOnInputDownEvent(PointerEventData eventData)
         {
             spring.enabled = true;
-            SetConnectedAnchor(Camera.main.ScreenToWorldPoint (Input.mousePosition));
+            SetConnectedAnchor(Camera.main.ScreenToWorldPoint (eventData.position));
             if (onInputDown != null)
                 onInputDown.Invoke();
         }
     
-        void OnMouseDrag()        
+        void HandleOnInputDragEvent(PointerEventData eventData)        
         {
             if (spring.enabled) 
             {
-                SetConnectedAnchor(Camera.main.ScreenToWorldPoint (Input.mousePosition));
+                SetConnectedAnchor(Camera.main.ScreenToWorldPoint (eventData.position));
             }
         }
         
-        void OnMouseUp()        
+        void HandleOnInputUpEvent(PointerEventData eventData)        
         {
             spring.enabled = false;
             if (onInputUp != null)

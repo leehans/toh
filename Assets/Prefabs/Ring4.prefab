@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 61248324940339120}
   - component: {fileID: 114876877891442790}
   - component: {fileID: 114486190758415822}
+  - component: {fileID: 114189781804595574}
   m_Layer: 11
   m_Name: Ring4
   m_TagString: Untagged
@@ -306,6 +307,17 @@ CompositeCollider2D:
       - {x: 0.82, y: -0.45000002}
       - {x: 1.98, y: -0.45000002}
   m_VertexDistance: 0.0005
+--- !u!114 &114189781804595574
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1435753577213786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe1a2781234adff4eac7e77d70b2e782, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114328164432432060
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -318,6 +330,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spring: {fileID: 231755601643891116}
+  mTouch: {fileID: 114189781804595574}
   onInputDown:
     m_PersistentCalls:
       m_Calls:
