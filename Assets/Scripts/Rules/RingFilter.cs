@@ -48,9 +48,10 @@ public class RingFilter : MonoBehaviour
 		if (!Allow(other))
 		{
 			pushTrigger = 0;
-			other.attachedRigidbody.AddForce(pushDirection * pushForce, ForceMode2D.Impulse);
+			DisableDragDropOnRing(other.gameObject.GetInstanceID());
 			DisplayRingDropRule();
 			TriggerSFX();
+			other.attachedRigidbody.AddForce(pushDirection * pushForce, ForceMode2D.Impulse);
 		}
 	}	
 
@@ -62,9 +63,10 @@ public class RingFilter : MonoBehaviour
 			pushTrigger = 0;
 			if (!Allow(other))
 			{
-				other.attachedRigidbody.AddForce(pushDirection * pushForce, ForceMode2D.Impulse);
 				DisplayRingDropRule();
+				DisableDragDropOnRing(other.gameObject.GetInstanceID());
 				TriggerSFX();
+				other.attachedRigidbody.AddForce(pushDirection * pushForce, ForceMode2D.Impulse);
 			}
 		}
 	}
@@ -82,6 +84,15 @@ public class RingFilter : MonoBehaviour
 	{
 		// Play the sfx for not allowing larger rings to drop
 		GameSystems.GetService<IAudioHandler>().PlayOneShot(sfxClip);
+	}
+
+	private void DisableDragDropOnRing(int instanceID)
+	{
+		Ring ring = GameSystems.GetService<RingRegistry>().Get(instanceID);
+		if (ring != null)
+		{
+			ring.DisableDragDropControls();
+		}
 	}
 
 	private bool Allow(Collider2D incomingCollider)

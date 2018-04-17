@@ -43,6 +43,11 @@ using System.Collections;
                 onInputUp.Invoke();
         }
 
+        public void Disable()
+        {
+            spring.enabled = false;
+        }
+
         #region Helpers
         private void SetConnectedAnchor(Vector2 pos)
         {

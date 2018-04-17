@@ -16,6 +16,9 @@ namespace TOH.Game
 		[SerializeField]
 		private AudioClip sfxOnInputDown;
 
+		[SerializeField]
+		private DragDropSpring dragDrop;
+
 		public int Size { get { return size; } }
 
 		void Start()
@@ -24,6 +27,13 @@ namespace TOH.Game
 			// ensure that the RingRegistry util has been properly instantiated.
 			GameSystems.GetService<RingRegistry>().Register(this);
 		}
+
+		#region Ring functions
+		public void DisableDragDropControls()
+		{
+			dragDrop.Disable();
+		}
+		#endregion // Ring functions
 
 		#region Event handlers
 		public void HandleOnInputDown()
