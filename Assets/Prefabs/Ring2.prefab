@@ -76,6 +76,7 @@ GameObject:
   - component: {fileID: 61157957794868626}
   - component: {fileID: 114548737181338480}
   - component: {fileID: 114608260985070936}
+  - component: {fileID: 114660456547570784}
   m_Layer: 11
   m_Name: Ring2
   m_TagString: Untagged
@@ -318,6 +319,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spring: {fileID: 231601701559044304}
+  mTouch: {fileID: 114660456547570784}
   onInputDown:
     m_PersistentCalls:
       m_Calls:
@@ -382,6 +384,17 @@ MonoBehaviour:
   sfxOnInputUp: {fileID: 8300000, guid: 19824a2f9a350c0428181c25112a4c28, type: 3}
   sfxOnInputDown: {fileID: 8300000, guid: 0d262e6224a03b44192cc13912e1ce09, type: 3}
   dragDrop: {fileID: 114520576750769008}
+--- !u!114 &114660456547570784
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1828323717455682}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe1a2781234adff4eac7e77d70b2e782, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!212 &212790700589370900
 SpriteRenderer:
   m_ObjectHideFlags: 1

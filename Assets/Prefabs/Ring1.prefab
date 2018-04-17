@@ -60,6 +60,7 @@ GameObject:
   - component: {fileID: 114438515220994958}
   - component: {fileID: 114978645353982206}
   - component: {fileID: 114298328630997046}
+  - component: {fileID: 114758736538164596}
   m_Layer: 11
   m_Name: Ring1
   m_TagString: Untagged
@@ -333,6 +334,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spring: {fileID: 231735741868540370}
+  mTouch: {fileID: 114758736538164596}
   onInputDown:
     m_PersistentCalls:
       m_Calls:
@@ -365,6 +367,17 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!114 &114758736538164596
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1731921708541494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe1a2781234adff4eac7e77d70b2e782, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114978645353982206
 MonoBehaviour:
   m_ObjectHideFlags: 1
