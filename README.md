@@ -12,7 +12,7 @@ The most fun I had, and probably where a majority of my time was spent, was on i
 
 ## Coding Thoughts
 
-I wanted to give emphasis on how I believed we should use techniques that promote decoupling in code. I used two concepts that helped me achieve this: 
+I wanted to give emphasis on how I believed we should use techniques that could promote decoupling in code. I used two concepts that helped me achieve this: 
 
 - GameSystem locator object which uses the service locator pattern to mainly store interface to-object mappings (i.e. `IAudioHandler`) thereby partly achieving Dependency injection. In this case, the GameSystem object does not employ strict rules (i.e. generic constraints) to what objects could register to it so it also holds strong references to some objects (i.e. `RingRegistry`).
 - Event-based UI system (via the EventBroadcaster object) I've had my fair share of UI nightmares in the form of strong references to scene objects existing within UI-only components. You move/update/delete that scene object, the UI fails. With an event-based system to handle and serve UI functionality, I can freely update my UI without having to think of objects going null in UI logic (and vice-versa). It also has the potential to lessen time coding repetitive stuff. Both the `UINotification` and `UIToggleButton` components both show how I implemented this.
